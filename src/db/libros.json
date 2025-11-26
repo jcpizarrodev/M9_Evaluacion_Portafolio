@@ -1,0 +1,32 @@
+[
+  {
+    "id": 1,
+    "nombre": "El principito",
+    "precio": 10000,
+    "cantidad_disponible": 10
+  },
+  {
+    "id": 2,
+    "nombre": "Cien años de soledad",
+    "precio": 15000,
+    "cantidad_disponible": 7
+  },
+  {
+    "id": 3,
+    "nombre": "Clean Code",
+    "precio": 25000,
+    "cantidad_disponible": 0
+  },
+  {
+    "id": 4,
+    "nombre": "El señor de los anillos",
+    "precio": 9990,
+    "cantidad_disponible": 10
+  },
+  {
+    "id": 5,
+    "nombre": "JavaScript ",
+    "precio": 8000,
+    "cantidad_disponible": 8
+  }
+]

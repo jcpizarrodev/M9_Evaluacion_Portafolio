@@ -1,0 +1,39 @@
+<div class="container my-5">
+  <div class="card shadow-lg p-4">
+
+    <h3 class="fw-bold mb-4 text-center">
+      <i class="bi bi-receipt-cutoff text-success"></i> Resultado del Checkout
+    </h3>
+
+    {{#if resultados.length}}
+
+      <ul class="list-group mb-4">
+        {{#each resultados}}
+          <li class="list-group-item d-flex align-items-center">
+            <i class="bi bi-check-circle-fill text-success me-2"></i>
+            {{this.mensaje}}
+          </li>
+        {{/each}}
+      </ul>
+
+      <div class="text-center">
+        <a href="/libros" class="btn btn-primary btn-lg">
+          <i class="bi bi-book"></i> Volver al catálogo
+        </a>
+      </div>
+
+    {{else}}
+
+      <div class="text-center py-4">
+        <i class="bi bi-exclamation-circle text-danger" style="font-size: 3rem;"></i>
+        <h4 class="mt-3">No se recibió ningún resultado</h4>
+        <a href="/libros" class="btn btn-primary mt-4">
+          <i class="bi bi-book"></i> Volver al catálogo
+        </a>
+      </div>
+
+    {{/if}}
+
+  </div>
+</div>
+

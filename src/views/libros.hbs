@@ -1,0 +1,61 @@
+<div class="card text-center">
+  <div class="card-body p-3">
+    <h1 class="display-5 fw-bold mb-3 d-flex justify-content-center align-items-center gap-3">
+      <i class="bi bi-book-half text-primary"></i>
+      Catálogo Digital
+    </h1>
+    <p class="lead text-muted mb-2">
+      Explora nuestra colección de libros y realiza tus compras de forma segura
+    </p>
+  </div>
+</div>
+<br>
+<div class="row">
+  {{#each libros}}
+    <div class="col-md-4 mb-3">
+      <div class="card p-3 shadow-sm">
+        <h5 class="fw-bold">{{this.nombre}}</h5>
+        <p class="mb-1">Precio: <strong>${{this.precio}}</strong></p>
+        <!-- CÍRCULO DE STOCK -->
+        <p class="mb-2">
+          Disponibles:
+          {{#if this.cantidad_disponible}}
+            <span class="stock-circle stock-green">{{this.cantidad_disponible}}</span>
+          {{else}}
+            <span class="stock-circle stock-red">0</span>
+          {{/if}}
+        </p>
+
+        {{#if this.cantidad_disponible}}
+          <!-- AGREGAR AL CARRITO -->
+          <form action="/carrito/add" method="POST">
+            <input type="hidden" name="token" value="{{session.token}}">
+            <input type="hidden" name="id" value="{{this.id}}" />
+            <input type="number" name="cantidad"
+                   min="1" max="{{this.cantidad_disponible}}"
+                   value="1" class="form-control mb-2" />
+            <button class="btn btn-outline-primary w-100">
+              <i class="bi bi-cart-plus"></i> Agregar al carrito
+            </button>
+          </form>
+          <!-- COMPRAR AHORA -->
+          <form action="/carrito/add-and-checkout" method="POST" class="mt-2">
+            <input type="hidden" name="token" value="{{session.token}}"> 
+            <input type="hidden" name="id" value="{{this.id}}">
+            <input type="hidden" name="cantidad" value="1">
+            <button class="btn btn-primary w-100">
+              <i class="bi bi-bag-check"></i> Comprar ahora
+            </button>
+          </form>
+
+        {{else}}
+          <div class="alert alert-danger mt-3 text-center">
+            <i class="bi bi-exclamation-circle-fill"></i> Sin stock
+          </div>
+        {{/if}}
+
+      </div>
+    </div>
+  {{/each}}
+</div>
+

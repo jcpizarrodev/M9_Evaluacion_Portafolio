@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "nombre": "El principito",
+    "cantidad": 1,
+    "comprador": "admin",
+    "fecha": "2025-11-24T02:38:35.298Z"
+  },
+  {
+    "id": 2,
+    "nombre": "Cien años de soledad",
+    "cantidad": 1,
+    "comprador": "admin",
+    "fecha": "2025-11-24T02:38:35.312Z"
+  },
+  {
+    "id": 3,
+    "nombre": "Clean Code",
+    "cantidad": 1,
+    "comprador": "admin",
+    "fecha": "2025-11-24T02:38:35.328Z"
+  },
+  {
+    "id": 2,
+    "nombre": "Cien años de soledad",
+    "cantidad": 1,
+    "comprador": "sandra",
+    "fecha": "2025-11-25T19:13:14.693Z"
+  }
+]
