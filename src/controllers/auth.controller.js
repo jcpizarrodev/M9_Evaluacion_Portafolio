@@ -4,16 +4,10 @@ import { getUsuarios, saveUsuarios } from "../models/usuarios.model.js";
 
 const SECRET = process.env.JWT_SECRET || "pass_jwt_secret";
 
-/* ============================
-   VISTA REGISTRO
-============================ */
 export const registerView = (req, res) => {
   res.render("register");
 };
 
-/* ============================
-   REGISTRAR USUARIO (bcrypt)
-============================ */
 export const register = (req, res) => {
   const { username, password } = req.body;
   const usuarios = getUsuarios();
@@ -33,20 +27,14 @@ export const register = (req, res) => {
 
   saveUsuarios(usuarios);
 
-  req.flash("success", "Registro exitoso. Ahora puedes ingresar.");
+  req.flash("success", "Registro exitoso. Ahora puede ingresar.");
   return res.redirect("/login");
 };
 
-/* ============================
-   VISTA LOGIN
-============================ */
 export const loginView = (req, res) => {
   res.render("login");
 };
 
-/* ============================
-   LOGIN (bcrypt + JSON)
-============================ */
 export const login = (req, res) => {
   const { username, password } = req.body;
 
@@ -64,13 +52,11 @@ export const login = (req, res) => {
     return res.redirect("/login");
   }
 
-  // Crear la sesión
   req.session.user = {
     username: user.username,
     role: user.role
   };
 
-  // 🔥 Generar token JWT válido
   req.session.token = jwt.sign(
     { username: user.username, role: user.role },
     SECRET,
@@ -81,9 +67,6 @@ export const login = (req, res) => {
   res.redirect("/");
 };
 
-/* ============================
-   LOGIN API JSON (POSTMAN)
-============================ */
 export const apiLogin = (req, res) => {
   const { username, password } = req.body;
 
@@ -107,9 +90,6 @@ export const apiLogin = (req, res) => {
   return res.json({ token });
 };
 
-/* ============================
-   LOGOUT
-============================ */
 export const logout = (req, res) => {
   req.session.destroy(err => {
     if (err) {

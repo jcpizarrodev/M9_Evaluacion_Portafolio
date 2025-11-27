@@ -260,7 +260,7 @@ Respuesta:
 ```json
 {
   "cart": [
-    { "id": 1, "cantidad": 2, "nombre": "El principito", "precio": 10000, "subtotal": 20000, "disponible": 4 }
+    { "id": 1, "cantidad": 2, "nombre": "Programación C#", "precio": 10000, "subtotal": 20000, "disponible": 4 }
   ],
   "total": 20000
 }
@@ -318,16 +318,21 @@ Flujo recomendado:
 
 ---
 
-## Autor
+## Acceso en línea
 
-Proyecto desarrollado como entrega académica por **[Tu Nombre]**.  
-Contacto: `tu.email@ejemplo.com` (opcional)
+La aplicación **Tienda Digital de Libros** está disponible para su uso en el siguiente enlace:
+
+ **https://m9-evaluacion-portafolio.onrender.com/libros**
+
+---
+
+**Cuentas de usuario para pruebas**
+
+| Cuenta   | Perfil         | Contraseña     |
+|----------|----------------|----------------|
+| `admin`  | Administrador  | admin123       |
+| `sandra` | usuario        | sandra123      |
 
 ---
 
-## Licencia
-
-MIT License — ver archivo `LICENSE`.
-
----
 

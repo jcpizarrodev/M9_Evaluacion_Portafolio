@@ -20,7 +20,7 @@ export const createLibro = (req, res) => {
   const id = libros.length ? libros[libros.length - 1].id + 1 : 1;
   libros.push({ id, nombre, precio: Number(precio), cantidad_disponible: Number(cantidad) });
   saveLibros(libros);
-  req.flash("success", "Libro creado");
+  req.flash("success", "Libro creado exitósamente");
   res.redirect("/admin");
 };
 
@@ -47,7 +47,7 @@ export const updateLibro = (req, res) => {
   libro.precio = Number(req.body.precio);
   libro.cantidad_disponible = Number(req.body.cantidad);
   saveLibros(libros);
-  req.flash("success", "Libro actualizado");
+  req.flash("success", "Libro actualizado exitósamente");
   res.redirect("/admin");
 };
 
@@ -56,6 +56,6 @@ export const deleteLibro = (req, res) => {
   let libros = getLibros();
   libros = libros.filter(l => l.id !== id);
   saveLibros(libros);
-  req.flash("success", "Libro eliminado");
+  req.flash("success", "Libro eliminado exitósamente");
   res.redirect("/admin");
 };

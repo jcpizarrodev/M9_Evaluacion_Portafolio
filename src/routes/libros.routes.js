@@ -16,13 +16,11 @@ router.get("/api/libros/:id", (req,res) => {
   res.json(libro);
 });
 
-// comprar via view or api; inject session token automatically
 router.post("/libros/:id/comprar", (req, res, next) => {
   if (req.session && req.session.token && !req.body.token) req.body.token = req.session.token;
   next();
 }, verifyToken, comprarLibro);
 
-// carrito: AGREGAR con validación de stock
 router.post("/carrito/add", (req, res) => {
   const { id, cantidad } = req.body;
   const qty = Number(cantidad || 1);
@@ -60,7 +58,6 @@ router.post("/carrito/add", (req, res) => {
   res.redirect("/libros");
 });
 
-// mostrar carrito con total calculado
 router.get("/carrito", (req, res) => {
   const libros = getLibros();
   const cart = (req.session.cart || []).map(item => {
@@ -80,7 +77,6 @@ router.get("/carrito", (req, res) => {
   res.render("carrito", { cart, total });
 });
 
-// API: obtener carrito (JSON)
 router.get("/api/carrito", (req, res) => {
   const libros = getLibros();
   const cart = (req.session.cart || []).map(item => {
@@ -99,13 +95,11 @@ router.get("/api/carrito", (req, res) => {
   res.json({ cart, total });
 });
 
-// checkout: inject token if available, then verify and procesarCarrito
 router.post("/carrito/checkout", (req, res, next) => {
   if (req.session && req.session.token && !req.body.token) req.body.token = req.session.token;
   next();
 }, verifyToken, procesarCarrito);
 
-// Comprar ahora = agregar al carrito y redirigir a checkout
 router.post("/carrito/add-and-checkout", (req, res) => {
   const { id, cantidad } = req.body;
   const qty = Number(cantidad || 1);

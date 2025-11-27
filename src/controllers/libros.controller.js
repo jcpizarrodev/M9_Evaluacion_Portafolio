@@ -1,9 +1,6 @@
 import { getLibros, saveLibros, findLibroById } from "../models/libros.model.js";
 import { saveVenta } from "../models/ventas.model.js";
 
-/**
- * Lógica reutilizable para comprar un libro
- */
 export const comprarLibroLogic = (id, cantidad, comprador) => {
   const libros = getLibros();
   const libro = libros.find(l => l.id === id);
@@ -15,10 +12,6 @@ export const comprarLibroLogic = (id, cantidad, comprador) => {
   return { ok: true, mensaje: `Compra exitosa: ${cantidad} x "${libro.nombre}"` };
 };
 
-/**
- * Endpoint usado por la ruta POST /libros/:id/comprar
- * (exportado con este nombre para que las rutas lo importen)
- */
 export const comprarLibro = (req, res) => {
   const id = Number(req.params.id);
   const cantidad = Number(req.body.cantidad) || 1;
@@ -38,9 +31,6 @@ export const comprarLibro = (req, res) => {
   return res.redirect("/libros");
 };
 
-/**
- * Listar libros (view) y API
- */
 export const listarLibros = (req, res) => {
   const libros = getLibros();
   res.render("libros", { libros });
@@ -51,9 +41,6 @@ export const listarLibrosAPI = (req, res) => {
   res.json(libros);
 };
 
-/**
- * Procesar carrito: usa comprarLibroLogic para cada item, limpia carrito y quita token de sesión
- */
 export const procesarCarrito = (req, res) => {
   const cart = req.session.cart || [];
   if (cart.length === 0) {
@@ -65,9 +52,8 @@ export const procesarCarrito = (req, res) => {
     const r = comprarLibroLogic(Number(item.id), Number(item.cantidad), req.session.user ? req.session.user.username : "invitado");
     resultados.push(r);
   }
-  // limpiar carrito si al menos una compra fue exitosa
+
   if (resultados.some(r => r.ok)) req.session.cart = [];
-  // quitar token después de compra (solicitud del usuario)
   if (req.session && req.session.token) delete req.session.token;
   req.flash("success", "Checkout procesado. Revisa los mensajes.");
   return res.render("carrito_result", { resultados });
